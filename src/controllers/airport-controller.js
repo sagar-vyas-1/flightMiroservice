@@ -22,6 +22,28 @@ const createAirport = async (req, res) => {
     }
 }
 
+const getAirportByCity = async (req, res) => {
+    try {
+        console.log(req.query);
+        const airport = await airportService.getByCity(req.query.cityId);
+        return res.status(200).json({
+            data: airport,
+            success: true,
+            message: 'Airport Fetched Successfully',
+            error: {}
+        }); 
+    } catch (error) {
+        console.log("Something went wrong in Airport controller", error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Not Able To fetch Airport',
+            error: error
+        });
+    }
+}
+
 module.exports = {
     createAirport,
+    getAirportByCity
 }

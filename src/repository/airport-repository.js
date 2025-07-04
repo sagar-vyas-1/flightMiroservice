@@ -10,6 +10,18 @@ class AirportRepository {
             throw {error};
         }
     }
+
+    async getByCity(cityId) {
+        try {
+            const airport = await Airport.findAll({
+                where: {cityId},
+            });
+            return airport;
+        } catch (error) {
+            console.log(error);
+            throw {error};
+        }
+    }
 }
 
 module.exports = AirportRepository;
