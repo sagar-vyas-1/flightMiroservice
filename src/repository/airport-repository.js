@@ -22,6 +22,16 @@ class AirportRepository {
             throw {error};
         }
     }
+
+    async getAll() {
+        try {
+            const response = await Airport.findAll();
+            return response;
+        } catch (error) {
+            console.log("Somehthing went wrong while fetching all airports");
+            throw {error};
+        }
+    }
 }
 
 module.exports = AirportRepository;

@@ -21,6 +21,46 @@ const airplane = async (req, res) => {
     }
 }
 
+// fetch all airplanes
+const getAirplanes = async (req, res) => {
+    try {
+        const response = await airplaneService.getAllAirplane();
+        return res.status(200).json({
+            data: response,
+            success: true,
+            message: 'Airplanes fetched successfully',
+            error: {}
+        });
+    } catch (error) {
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Internal Server Error',
+            error: error
+        })
+    }
+}
+
+const getAirplane = async (req, res) => {
+    try {
+        const airplane = await airplaneService.getAirplane(req.params.id);
+        return res.status(200).json({
+            data: airplane,
+            success: true,
+            message: 'Airplane details fetched successfully',
+            error: {}
+        });
+    } catch (error) {
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Internal server error',
+            error: error
+        });
+    }
+}
 module.exports = {
     airplane,
+    getAirplanes,
+    getAirplane
 }

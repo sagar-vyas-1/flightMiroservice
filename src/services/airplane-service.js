@@ -15,6 +15,26 @@ class AirplaneService {
             throw {error};
         }
     }
+
+    async getAllAirplane() {
+        try {
+            const response = await this.airplaneRepository.getAllAirplane();
+            return response;
+        } catch (error) {
+            console.log("Something went wrong while fetching all airplanes");
+            throw {error};
+        }
+    }
+
+    async getAirplane(id) {
+        try {
+            const airplane = await this.airplaneRepository.getAirplane(id);
+            return airplane;
+        } catch (error) {
+            console.log("Something went wrong while fetching airplane");
+            throw {error};
+        }
+    }
 }
 
 module.exports = AirplaneService;
