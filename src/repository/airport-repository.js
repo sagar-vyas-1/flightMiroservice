@@ -11,24 +11,14 @@ class AirportRepository {
         }
     }
 
-    async getByCity(cityId) {
+    async getAirport(cityId) {
         try {
             const airport = await Airport.findAll({
-                where: {cityId},
+                where: cityId ? { cityId } : {},
             });
             return airport;
         } catch (error) {
             console.log(error);
-            throw {error};
-        }
-    }
-
-    async getAll() {
-        try {
-            const response = await Airport.findAll();
-            return response;
-        } catch (error) {
-            console.log("Somehthing went wrong while fetching all airports");
             throw {error};
         }
     }

@@ -16,22 +16,12 @@ class AirportService {
         }
     }
 
-    async getByCity(cityId) {
+    async getAirport(cityId) {
         try {
-            const airport = await this.airportRepository.getByCity(cityId);
+            const airport = await this.airportRepository.getAirport(cityId);
             return airport;
         } catch (error) {
             console.log("Something went wrong in get airport by city");
-            throw {error};
-        }
-    }
-
-    async getAll() {
-        try {
-            const response = await this.airportRepository.getAll();
-            return response;
-        } catch (error) {
-            console.log("Something went wrong while fetching all airport in airport service");
             throw {error};
         }
     }

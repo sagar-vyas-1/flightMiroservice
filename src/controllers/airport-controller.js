@@ -24,7 +24,7 @@ const createAirport = async (req, res) => {
 
 const getAirportByCity = async (req, res) => {
     try {
-        const airport = await airportService.getByCity(req.query.cityId);
+        const airport = await airportService.getAirport(req.query.cityId);
         return res.status(200).json({
             data: airport,
             success: true,
@@ -42,28 +42,7 @@ const getAirportByCity = async (req, res) => {
     }
 }
 
-const getAllAirport = async (req, res) => {
-    try {
-        const response = await airportService.getAll();
-        return res.status(200).json({
-            data: response,
-            success: true,
-            message: 'All Airports details fetched successfully',
-            error: {}
-        })
-    } catch (error) {
-        console.log("Something went wrong while fetching all Airports in airport controller");
-        return res.status(500).json({
-            data: {},
-            success: false,
-            message: 'Internal server error',
-            error: error
-        });
-    }
-}
-
 module.exports = {
     createAirport,
     getAirportByCity,
-    getAllAirport
 }
