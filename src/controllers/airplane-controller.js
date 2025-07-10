@@ -43,7 +43,7 @@ const getAirplanes = async (req, res) => {
 
 const getAirplane = async (req, res) => {
     try {
-        const airplane = await airplaneService.getAirplane(req.params.id);
+        const airplane = await airplaneService.getAirplane(req.params.airplaneId);
         return res.status(200).json({
             data: airplane,
             success: true,
