@@ -4,8 +4,8 @@ const { cityController, airportController, airplaneController, flightController 
 const router = express.Router();
 
 // city routes
-router.post('/city', cityController.create);
-router.get('/city/:id', cityController.getCity);
+router.post('/cities', cityController.create);
+router.get('/cities/:cityId', cityController.getCity);
 router.get('/cities', cityController.getAll);
 router.delete('/cities/:cityId', cityController.deleteCity);
 
@@ -18,7 +18,7 @@ router.delete('/airports/:airportId', airportController.deleteAirport);
 // airplane routes
 router.post('/airplanes', airplaneController.airplane);
 router.get('/airplanes', airplaneController.getAirplanes);
-router.get('/airplanes/:id', airplaneController.getAirplane);
+router.get('/airplanes/:airplaneId', airplaneController.getAirplane);
 router.delete('/airplans/:airplaneId', airplaneController.deleteAirplane);
 
 // flight routes
