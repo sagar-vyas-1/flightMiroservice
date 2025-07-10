@@ -44,6 +44,16 @@ class FlightService {
             throw {error};
         }
     }
+
+    async deleteFlight(flightId) {
+        try {
+            const response = await this.flightRepository.deleteFlight(flightId);
+            return response;
+        } catch (error) {
+            console.log("Something went wrong while deleting flight in flight service");
+            throw {error};
+        }
+    }
 }
 
 module.exports = FlightService;

@@ -60,8 +60,28 @@ const update = async (req, res) => {
     }
 }
 
+const deleteFlight = async (req, res) => {
+    try {
+        const response = await flightService.deleteFlight(req.params.flightId);
+        return res.status(204).json({   // code 204 for delete message with no return content
+            data: response,
+            success: true,
+            message: 'Flight deleted successfully',
+            error: {}
+        });
+    } catch (error) {
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Internal Server Error',
+            error: error
+        });
+    }
+}
+
 module.exports = {
     create,
     getAll,
-    update
+    update,
+    deleteFlight
 }
