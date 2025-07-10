@@ -22,6 +22,26 @@ const create = async (req, res) => {
     }
 }
 
+const getAll = async (req, res) => {
+    try {
+        const response = await flightService.getFlights(req.query);
+        return res.status(200).json({
+            data: response,
+            success: true,
+            message: 'Flights details fetch successfully',
+            error: {}
+        });
+    } catch (error) {
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Internal server error',
+            error: error
+        });
+    }
+}
+
 module.exports = {
     create,
+    getAll,
 }

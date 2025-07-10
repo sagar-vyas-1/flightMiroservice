@@ -19,6 +19,7 @@ router.get('/airplanes', airplaneController.getAirplanes);
 router.get('/airplane/:id', airplaneController.getAirplane);
 
 // flight routes
-router.post('/flight', flightController.create);
+router.post('/flights', flightController.create);
+router.get('/flights', flightController.getAll);
 
 module.exports = router;
