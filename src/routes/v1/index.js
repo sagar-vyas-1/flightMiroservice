@@ -12,6 +12,7 @@ router.get('/cities', cityController.getAll);
 router.post('/airport', airportController.createAirport);
 router.get('/airports', airportController.getAirportByCity); // by cityId in query
 router.patch('/airports/:airportId', airportController.update);
+router.delete('/airports/airportId', airportController.deleteAirport);
 
 // airplane routes
 router.post('/airplane', airplaneController.airplane);

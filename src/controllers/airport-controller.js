@@ -62,8 +62,29 @@ const update = async (req, res) => {
     }
 }
 
+const deleteAirport = async (req, res) => {
+    try {
+        const response = await airportService.deleteAirport(req.params.airportId);
+        return res.status(204).json({
+            data: response,
+            success: true,
+            message: 'Airport Deleted Successfully',
+            error: {}
+        });
+    } catch (error) {
+        console.log("Something went wrong in airport controller while deleting airport details");
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Internal server error',
+            error: error
+        });
+    }
+}
+
 module.exports = {
     createAirport,
     getAirportByCity,
-    update
+    update,
+    deleteAirport
 }
