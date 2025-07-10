@@ -30,6 +30,18 @@ class CityRepository {
             throw {error};
         }
     }
+
+    async deleteCity(cityId) {
+        try {
+            const city = await City.destroy({
+                where: { id: cityId}
+            });
+            return city;
+        } catch (error) {
+            console.log("Something went wrong in city repository");
+            throw {error};
+        } 
+    }
 }
 
 module.exports = CityRepository;

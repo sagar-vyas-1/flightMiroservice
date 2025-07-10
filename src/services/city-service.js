@@ -35,6 +35,16 @@ class CityService {
             throw {error};
         }
     }
+
+    async deleteCity(cityId) {
+        try {
+            const city = await this.cityRepository.deleteCity(cityId);
+            return city;
+        } catch (error) {
+            console.log("Somethig went wrong in city service");
+            throw {error};
+        }
+    }
 }
 
 module.exports = CityService;

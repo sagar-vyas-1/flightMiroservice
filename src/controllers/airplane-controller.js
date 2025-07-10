@@ -59,8 +59,28 @@ const getAirplane = async (req, res) => {
         });
     }
 }
+
+const deleteAirplane = async (req, res) => {
+    try {
+        const response = await airplaneService.deleteAirplane(req.params.airplaneId);
+        return res.status(204).json({
+            data: response,
+            success: true,
+            message: 'Airplane details deleted successfully',
+            error: {}
+        });
+    } catch (error) {
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Internal server error',
+            error: error
+        });
+    }
+}
 module.exports = {
     airplane,
     getAirplanes,
-    getAirplane
+    getAirplane,
+    deleteAirplane
 }

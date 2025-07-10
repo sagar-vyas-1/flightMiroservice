@@ -30,6 +30,18 @@ class AirplaneRepository {
             throw {error};
         }
     }
+
+    async deleteAirplane(airplaneId) {
+        try {
+            const response = await Airplane.destroy({
+                where: { id: airplaneId }
+            });
+            return response;
+        } catch (error) {
+            console.log("Something went wrong while deleting airplane repository");
+            throw {error};
+        }
+    }
 }
 
 module.exports = AirplaneRepository;
