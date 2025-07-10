@@ -1,4 +1,4 @@
-const { Op } = require('sequelize');
+const { Op, where } = require('sequelize');
 const { Flight } = require('../models/index');
 
 class FlightRepository {
@@ -9,11 +9,9 @@ class FlightRepository {
         if (data.arrivalAirportId) {
             filter.arrivalAirportId = data.arrivalAirportId;
         }
-
         if (data.departureAirportId) {
             filter.departureAirportId = data.departureAirportId;
         }
-
         if (data.maxPrice) {
             filter.price = {
                 [Op.lte]: data.maxPrice
@@ -35,14 +33,24 @@ class FlightRepository {
     async getFlights(data) {
         try {
             const filter = this.#createFilters(data);
-            console.log(filter);
             const response = await Flight.findAll({
                 where: filter,
             });
-            console.log(response);
             return response;
         } catch (error) {
             console.log("Something went wrong while getting all flights");
+            throw {error};
+        }
+    }
+
+    async updateFlight(flightId, data) {
+        try {
+            const response = await Flight.update(data, {
+                where: { id: flightId },
+            });
+            return response;
+        } catch (error) {
+            console.log("Something went wrong while updating flights details");
             throw {error};
         }
     }
