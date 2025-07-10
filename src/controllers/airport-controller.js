@@ -42,7 +42,28 @@ const getAirportByCity = async (req, res) => {
     }
 }
 
+const update = async (req, res) => {
+    try {
+        const airport = await airportService.updateAirport(req.params.airportId, req.body);
+        return res.status(200).json({
+            data: airport,
+            success: true,
+            message: 'Airport details updated successfully',
+            error: {}
+        });
+    } catch (error) {
+        console.log("Something went wrong in airport controller while updating airport details");
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: 'Internal server error',
+            error: error
+        });
+    }
+}
+
 module.exports = {
     createAirport,
     getAirportByCity,
+    update
 }

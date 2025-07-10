@@ -22,6 +22,20 @@ class AirportRepository {
             throw {error};
         }
     }
+
+    async updateAirport(airportId, data) {
+        try {
+            const airport = await Airport.update(data, {
+                where: {
+                    id: airportId
+                }
+            });
+            return airport;
+        } catch (error) {
+            console.log(error);
+            throw {error};
+        }
+    }
 }
 
 module.exports = AirportRepository;

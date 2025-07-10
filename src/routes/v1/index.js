@@ -10,8 +10,8 @@ router.get('/cities', cityController.getAll);
 
 // airport routes
 router.post('/airport', airportController.createAirport);
-// router.get('/airports', airportController.getAllAirport);
 router.get('/airports', airportController.getAirportByCity); // by cityId in query
+router.patch('/airports/:airportId', airportController.update);
 
 // airplane routes
 router.post('/airplane', airplaneController.airplane);
