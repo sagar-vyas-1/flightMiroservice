@@ -1,6 +1,6 @@
 const express = require('express');
 const { cityController, airportController, airplaneController, flightController } = require('../../controllers/index');
-
+const { flightMiddleware } = require('../../middlewares/index');
 const router = express.Router();
 
 // city routes
@@ -22,7 +22,7 @@ router.get('/airplanes/:airplaneId', airplaneController.getAirplane);
 router.delete('/airplans/:airplaneId', airplaneController.deleteAirplane);
 
 // flight routes
-router.post('/flights', flightController.create);
+router.post('/flights', flightMiddleware.validateCreateFlight, flightController.create);
 router.get('/flights', flightController.getAll); // has filter of arrivalAirportId, departureAirportId and maxPrice
 router.patch('/flights/:flightId', flightController.update);
 router.delete('/flights/:flightId', flightController.deleteFlight);
