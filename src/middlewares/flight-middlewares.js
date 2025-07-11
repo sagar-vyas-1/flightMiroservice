@@ -1,4 +1,4 @@
-const { ServerErrorCode } = require("../utils/error-codes");
+const { ServerErrorCode, ClientErrorCode } = require("../utils/error-codes");
 
 const validateCreateFlight = (req, res, next) => {
     if (
@@ -20,6 +20,20 @@ const validateCreateFlight = (req, res, next) => {
     next();
 }
 
+const validateDeleteFlight = (req, res, next) => {
+    const { flightId } = req.params;
+    if (!flightId) {
+        return res.status(ClientErrorCode.BAD_REQUEST).json({
+            data: {},
+            success: false,
+            message: 'flightId is missing',
+            error: 'Invalid request for delete flight'
+        });
+    }
+    next();
+}
+
 module.exports = {
-    validateCreateFlight
+    validateCreateFlight,
+    validateDeleteFlight
 }
